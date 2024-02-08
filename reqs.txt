@@ -1,0 +1,28 @@
+Building an eCommerce project using React: 
+Requirements: 
+
+DON’T USE ALERT (use Bootstrap instead) 
+
+1. **User Authentication:**
+   - User registration and login. (save data in local storage)
+   - Validation (on registration and login)
+   -  if the user needs to add products to his cart he must LoggedIN, if he didn’t log in he can browse  
+   
+2. **Product Management:**
+   - call API to list products.
+   - Product details, including images, descriptions, and prices. (call API to view product)
+
+3. **Shopping Cart:**
+   - Add, remove, and update items in the cart.
+   - Calculate cart totals and taxes.
+   
+
+4. **Wishlist and Favorites:** (using redux)
+    - Allow users to create and manage wishlists.
+    - Save favorite products for later 
+
+5. **Search and Filtering:**
+   - Search products by name
+  
+6. **Responsive Design:**
+   - Ensure the application is accessible and usable on various devices and screen sizes.(small, medium,  large)
