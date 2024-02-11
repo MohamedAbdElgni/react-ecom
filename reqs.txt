@@ -2,7 +2,7 @@ Building an eCommerce project using React:
 Requirements: 
 
 DON’T USE ALERT (use Bootstrap instead) 
-
+--Cats api https://dummyjson.com/docs/products
 1. **User Authentication:**
    - User registration and login. (save data in local storage)
    - Validation (on registration and login)
@@ -13,7 +13,7 @@ DON’T USE ALERT (use Bootstrap instead)
    - Product details, including images, descriptions, and prices. (call API to view product)
 
 3. **Shopping Cart:**
-   - Add, remove, and update items in the cart.
+   - Add, remove, and update items in the cart. 
    - Calculate cart totals and taxes.
    
 

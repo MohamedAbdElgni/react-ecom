@@ -1,0 +1,16 @@
+.password-toggle-icon{
+
+    position: absolute;
+    top: 40px;
+    right: 30px;
+    z-index: 10000;
+    cursor: pointer;
+}
+
+.password-toggle-icon :hover{
+    color: green;
+}
+
+.green-ic{
+    color: green;
+}
