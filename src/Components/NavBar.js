@@ -2,8 +2,9 @@ import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
 import { AuthContext } from '../AuthContext';
-import { faUser, faShoppingCart, faHeart, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faShoppingCart, faHeart, faSignInAlt, faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useSelector } from 'react-redux';
 const NavBarTop = () => {
 
     const authContext = useContext(AuthContext);
@@ -12,7 +13,13 @@ const NavBarTop = () => {
     const logout = () => {
         authContext.logout();
     }
+    const cart = useSelector(state => state.cart);
+    const wishList = useSelector(state => state.wishlist);
+    const favorites = useSelector(state => state.fav);
 
+    useEffect(() => {
+    }
+        , [cart, wishList, favorites]);
 
 
 
@@ -42,13 +49,22 @@ const NavBarTop = () => {
                                     </Link>
                                 </li>
                                 <li className='nav-item border-dark'>
-                                    <Link className='nav-link text-dark'>
+                                    <Link className='nav-link text-dark position-relative' to='/cart'>
                                         <FontAwesomeIcon icon={faShoppingCart} /> Cart
+                                        {cart.length > 0 ? <span className='badge-notification' style={{ fontSize: '0.8rem' }}>{cart.length}</span> : null}
                                     </Link>
                                 </li>
                                 <li className='nav-item border-dark'>
-                                    <Link className='nav-link text-dark'>
-                                        <FontAwesomeIcon icon={faHeart} /> WishLists
+                                    <Link className='nav-link text-dark position-relative'>
+                                        <FontAwesomeIcon icon={faHeart} /> WishList
+                                        {wishList.length > 0 ? <span className='badge-notification' style={{ fontSize: '0.8rem' }}>{wishList.length}</span> : null}
+
+                                    </Link>
+                                </li>
+                                <li className='nav-item border-dark'>
+                                    <Link className='nav-link text-dark position-relative'>
+                                        <FontAwesomeIcon icon={faStar} className='star' style={{ color: favorites.length > 0 ? 'gold' : 'black' }} /> Favorites
+                                        {favorites.length > 0 ? <span className='num' style={{ fontSize: '0.8rem' }}>{favorites.length}</span> : null}
                                     </Link>
                                 </li>
                                 <li className='nav-item border-dark'>

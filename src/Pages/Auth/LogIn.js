@@ -20,7 +20,7 @@ const LogIn = () => {
             const re = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/
             const result = { isValid: re.test(email), message: '' };
             if (!result.isValid) {
-                result.message = 'Email is not valid';
+                result.message = 'Email is not valid format should be like "Exam@mail.com"';
             }
             return result;
         },
@@ -41,14 +41,14 @@ const LogIn = () => {
         const result = Validations.emailValid(e.target.value);
 
         setEmail({ value: e.target.value, isValid: result.isValid, message: result.message });
-        e.target.className = result.isValid ? 'form-control' : 'form-control is-invalid';
+        e.target.className = result.isValid ? 'form-control ' : 'form-control is-invalid';
     };
 
     const handlePasswordChange = (e) => {
         const result = Validations.passwordValid(e.target.value);
 
         setPassword({ value: e.target.value, isValid: result.isValid, message: result.message });
-        e.target.className = result.isValid ? 'form-control' : 'form-control is-invalid';
+        e.target.className = result.isValid ? 'form-control ' : 'form-control is-invalid';
     };
 
 

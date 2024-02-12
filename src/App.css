@@ -1,6 +1,4 @@
-.App {
-  text-align: center;
-}
+
 
 .App-logo {
   height: 40vmin;
@@ -17,3 +15,98 @@ button {
 form > * {
   margin: 10px 0;
 }
+
+.cat-bar {
+  display: flex;
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 0px 0;
+  scrollbar-width: thin;
+  scrollbar-color: #f5f5f5 #f5f5f5;
+  overflow-x: auto;
+}
+
+.cat-bar::-webkit-scrollbar {
+  width: 10px;
+}
+
+.cat-bar::-webkit-scrollbar-thumb {
+  background-color: #f5f5f5;
+  border-radius: 5px;
+}
+
+.cat-btn {
+  background-color: #000000;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 20px !important;
+  color: white;
+  text-transform: capitalize;
+}
+
+.cat-btn:hover {
+  background-color: #333333;
+}
+
+.fav-ico {
+  color: gold;
+  cursor: pointer;
+}
+
+.fav-ico:hover {
+  color: red;
+}
+
+.fav-ico:active {
+  color: red;
+}
+
+
+.badge-notification {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgb(248, 211, 4);
+  color: black;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  z-index: auto;
+  text-align: center;
+
+}
+
+.num {
+  position: absolute;
+  top: 28%;
+  left: 14%;
+  font-size: larger;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+}
+
+.star{
+  color: rgb(15, 15, 14);
+  font-size: 20px;
+}
+
+@media screen and (max-width: 600px) {
+  .badge-notification  {
+    left: 90px;
+    top:10px
+  }
+  .num {
+    left: 7px;
+    top: 10px;
+  }
+  
+}
+  
+
+
+
+

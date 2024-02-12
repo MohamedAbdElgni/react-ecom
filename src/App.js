@@ -10,7 +10,7 @@ import 'animate.css';
 
 function App() {
   return (
-    <div className='container-fluid m-0 p-0 h-100 main'>
+    <div className='container-fluid m-0 p-0 h-100 main app'>
       <BrowserRouter>
         <NavBarTop />
         <Switch>

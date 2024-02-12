@@ -12,7 +12,7 @@ const AuthProvider = ({ children }) => {
         setIsLoggedIn(!!ckuser);
         const localUsers = JSON.parse(localStorage.getItem('users'));
         setUsers(localUsers || []);
-        setCurrentUser(ckuser);
+        setCurrentUser(ckuser ? ckuser : false);
     }
         , []);
 

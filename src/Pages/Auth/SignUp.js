@@ -190,7 +190,7 @@ function SignUp() {
                 const user = new User(fname.value, lname.value, email.value, phone.value, password.value, age.value, gender);
                 setUsers([...users, user]);
                 authContext.setUsers([...users, user]);
-                console.log(`User ${user.name} has been added successfully`);
+                //console.log(`User ${user.name} has been added successfully`);
                 setReged(true);
             }
         } else {
