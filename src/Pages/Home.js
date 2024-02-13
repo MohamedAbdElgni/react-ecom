@@ -19,7 +19,7 @@ function Home() {
   }
 
   return (
-    <div className=''>
+    <div className='container-fluid'>
       <div className='cat-bar'>
         {isLoading ? (
           <p>Loading categories...</p>

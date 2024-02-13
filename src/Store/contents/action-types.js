@@ -13,4 +13,3 @@ export const ActionTypes = {
 
 };
 
-// path: src/Store/contents/action-types.js

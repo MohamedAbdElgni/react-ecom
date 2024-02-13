@@ -1,7 +1,7 @@
 const INITAL_VALUE = {
     products: [],
     cats: [],
-    product: {},
+    product: [],
     cat: [],
     fav: [],
     cart: [],
@@ -66,7 +66,7 @@ export const get_products = (state = INITAL_VALUE, action) => {
                 ...state,
                 fav: action.payload
             }
-            
+
         default:
             return state
     }

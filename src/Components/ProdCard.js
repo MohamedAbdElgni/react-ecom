@@ -70,9 +70,6 @@ function ProdCard(props) {
 
     const handleAddToWishlist = (product) => {
         if (isLoggedIn) {
-            console.log(product)
-            console.log(props.product)
-            console.log(wishlist.includes(props.product))
             const updatedWishlist = [...wishlist, product];
             dispatch({ type: 'ADD_TO_WISHLIST', payload: updatedWishlist });
         } else {
@@ -124,10 +121,15 @@ function ProdCard(props) {
                     </h5>
 
                     {/* Price discount */}
-                    <div className="mt-2">
-                        <p className="card-text text-secondary"><strong>${props.price}</strong></p>
-                        {props.discount > 0 && <p className="card-text text-success mb-1">Save {props.discount}%</p>}
-                    </div>
+                    {props.discount ? (
+                        <p className="card-text mb-0">
+                            <span className="text-success"><span>$</span>{Math.round(props.price * (1 - props.discount / 100))}</span>
+                            <span className="text-danger"> ({props.discount}% off)</span>
+                            <p className="text-decoration-line-through me-2">${props.price}</p>
+                        </p>
+                    ) : (
+                        <p className="card-text mb-0">{props.price}</p>
+                    )}
                 </div>
 
                 {/* WiSH */}

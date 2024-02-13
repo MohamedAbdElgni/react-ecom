@@ -21,7 +21,7 @@ export const fetchAll = () => (dispatch) => {
 export const fetchOneCat = (name) => (dispatch) => {
     axiosInstance.get(`/category/${name}?limit=100`)
         .then(res => {
-            console.log("catfeatch");
+
             dispatch({
                 type: ActionTypes.FEATCH_ONE_CAT,
                 payload: res.data
@@ -51,6 +51,8 @@ export const fetchCats = () => (dispatch) => {
 export const fetchOne = (id) => (dispatch) => {
     axiosInstance.get(`/${id}`)
         .then(res => {
+            // console.log("onefeatch");
+            //console.log(res.data);
             dispatch({
                 type: ActionTypes.FEATCH_ONE,
                 payload: res.data

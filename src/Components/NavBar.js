@@ -55,14 +55,14 @@ const NavBarTop = () => {
                                     </Link>
                                 </li>
                                 <li className='nav-item border-dark'>
-                                    <Link className='nav-link text-dark position-relative'>
+                                    <Link className='nav-link text-dark position-relative' to='/wishlist'>
                                         <FontAwesomeIcon icon={faHeart} /> WishList
                                         {wishList.length > 0 ? <span className='badge-notification' style={{ fontSize: '0.8rem' }}>{wishList.length}</span> : null}
 
                                     </Link>
                                 </li>
                                 <li className='nav-item border-dark'>
-                                    <Link className='nav-link text-dark position-relative'>
+                                    <Link className='nav-link text-dark position-relative' to='/fav'>
                                         <FontAwesomeIcon icon={faStar} className='star' style={{ color: favorites.length > 0 ? 'gold' : 'black' }} /> Favorites
                                         {favorites.length > 0 ? <span className='num' style={{ fontSize: '0.8rem' }}>{favorites.length}</span> : null}
                                     </Link>
