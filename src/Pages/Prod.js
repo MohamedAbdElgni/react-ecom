@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useContext, useEffect } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
-import { faHeart, faStar, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faStar } from '@fortawesome/free-solid-svg-icons';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { AuthContext } from '../AuthContext';
@@ -17,25 +17,89 @@ import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 export default function Prod() {
     const dispatch = useDispatch();
     const { id } = useParams();
-    const prod = useSelector(state => state.product);
     const context = useContext(AuthContext);
+    const prod = useSelector(state => state.product);
     const fav = useSelector(state => state.fav);
     const cart = useSelector(state => state.cart);
-    const wishlist = useSelector(state => state.wishlist);
     const [showModal, setShowModal] = useState(false);
+    const wishlist = useSelector(state => state.wishlist);
+    const isLoggedIn = context.currentUser ? true : false;
+
 
     useEffect(() => {
         dispatch(fetchOne(id));
     }, [id, dispatch]);
 
 
+    const handleAddToCart = (product) => {
+        if (isLoggedIn) {
+            const updatedCart = [...cart, product];
+            dispatch({ type: 'ADD_TO_CART', payload: updatedCart });
+
+        } else {
+            setShowModal(true);
+
+        }
+
+    }
+
+    const handleRemoveFromCart = (product) => {
+        if (isLoggedIn) {
+
+            const updatedCart = cart.filter((item) => item.id !== product.id);
+            dispatch({ type: 'REMOVE_FROM_CART', payload: updatedCart });
+
+        } else {
+            setShowModal(true);
+        }
+    }
+
+    const handleAddToFav = (product) => {
+        if (isLoggedIn) {
+            const updatedFav = [...fav, product];
+            dispatch({ type: 'ADD_TO_FAV', payload: updatedFav });
+        }
+        else {
+            setShowModal(true);
+        }
+    }
+
+    const handleRemoveFromFav = (product) => {
+        if (isLoggedIn) {
+            const updatedFav = fav.filter((item) => item.id !== product.id);
+            dispatch({ type: 'REMOVE_FROM_FAV', payload: updatedFav });
+        }
+        else {
+            setShowModal(true);
+        }
+    }
+
+    const handleAddToWishlist = (product) => {
+        if (isLoggedIn) {
+            const updatedWishlist = [...wishlist, product];
+            dispatch({ type: 'ADD_TO_WISHLIST', payload: updatedWishlist });
+        }
+        else {
+            setShowModal(true);
+        }
+    }
+
+    const handleRemoveFromWishlist = (product) => {
+        if (isLoggedIn) {
+            const updatedWishlist = wishlist.filter((item) => item.id !== product.id);
+            dispatch({ type: 'REMOVE_FROM_WISHLIST', payload: updatedWishlist });
+        }
+        else {
+            setShowModal(true);
+        }
+    }
+
+
+
     const handleCloseModal = () => {
         setShowModal(false);
     }
 
-    const handleShowModal = () => {
-        setShowModal(true);
-    }
     const handleImageClick = (index) => {
         setSelectedImageIndex(index);
     };
@@ -90,29 +154,29 @@ export default function Prod() {
                                     </p>
                                     <div className='d-flex align-items-center'>
                                         {!wishlist.some(wishlist => wishlist.id === prod.id) ? (
-                                            <button className="btn btn-outline-warning" >
+                                            <button className="btn btn-outline-warning" onClick={() => handleAddToWishlist(prod)}>
                                                 <FontAwesomeIcon icon={faStar} /> Add to Wishlist
                                             </button>
                                         ) : (
-                                            <button className="btn btn-outline-danger" >
+                                            <button className="btn btn-outline-danger" onClick={() => handleRemoveFromWishlist(prod)}>
                                                 <FontAwesomeIcon icon={faStar} /> Remove from Wishlist
                                             </button>
                                         )}
                                         {!fav.some(fav => fav.id === prod.id) ? (
-                                            <button className="btn btn-outline-warning" >
+                                            <button className="btn btn-outline-warning" onClick={() => handleAddToFav(prod)}>
                                                 <FontAwesomeIcon icon={faHeart} /> Add to Favourites
                                             </button>
                                         ) : (
-                                            <button className="btn btn-outline-danger" >
+                                            <button className="btn btn-outline-danger" onClick={() => handleRemoveFromFav(prod)}>
                                                 <FontAwesomeIcon icon={faHeart} /> Remove from Favourites
                                             </button>
                                         )}
                                         {!cart.some(cart => cart.id === prod.id) ? (
-                                            <button className="btn btn-outline-warning" >
+                                            <button className="btn btn-outline-warning" onClick={() => handleAddToCart(prod)}>
                                                 <FontAwesomeIcon icon={faCartPlus} /> Add to Cart
                                             </button>
                                         ) : (
-                                            <button className="btn btn-outline-danger" >
+                                            <button className="btn btn-outline-danger" onClick={() => handleRemoveFromCart(prod)}>
                                                 <FontAwesomeIcon icon={faCartPlus} /> Remove from Cart
                                             </button>
                                         )}
@@ -122,7 +186,25 @@ export default function Prod() {
                         </div>
                     </div>
                 </div>
+
             )}
+            <Modal show={showModal} onHide={handleCloseModal}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Please Log In</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>You need to log in to perform this action.</Modal.Body>
+                <Modal.Footer>
+                    <Button variant="warning" onClick={handleCloseModal}>
+                        Close
+                    </Button>
+                    <Link to="/login">
+                        <Button variant="dark">
+                            Log In
+                        </Button>
+                    </Link>
+                </Modal.Footer>
+            </Modal>
+
         </>
     )
 }

@@ -8,12 +8,14 @@ import NavBarTop from './Components/NavBar';
 import Prod from './Pages/Prod';
 import WishList from './Pages/WishList';
 import Favourits from './Pages/Favourits';
+import Search from './Pages/Search';
+import Error from './Pages/Error';
 import 'animate.css';
 
 
 function App() {
   return (
-    <div className='container-fluid m-0 p-0 h-100 main app'>
+    <div className="App">
       <BrowserRouter>
         <NavBarTop />
         <Switch>
@@ -21,8 +23,10 @@ function App() {
           <Route exact path="/product/:id" component={Prod} />
           <Route exact path="/wishlist" component={WishList} />
           <Route exact path="/fav" component={Favourits} />
+          <Route exact path="/search/:keyword" component={Search} />
           <Route exact path="/login" component={logIn} />
           <Route exact path="/signup" component={SignUp} />
+          <Route component={Error} path="*" />
         </Switch>
       </BrowserRouter>
     </div>

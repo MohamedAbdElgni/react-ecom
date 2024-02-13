@@ -94,6 +94,11 @@ form > * {
   font-size: 20px;
 }
 
+.App{
+  position: relative;
+  overflow: hidden;
+}
+
 @media screen and (max-width: 600px) {
   .badge-notification  {
     left: 90px;

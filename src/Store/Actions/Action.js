@@ -66,7 +66,7 @@ export const fetchOne = (id) => (dispatch) => {
 
 
 export const fetchSearch = (query) => (dispatch) => {
-    axiosInstance.get(`/search?query=${query}`)
+    axiosInstance.get(`/search?q=${query}`)
         .then(res => {
             dispatch({
                 type: ActionTypes.FEATCH_SEARCH,

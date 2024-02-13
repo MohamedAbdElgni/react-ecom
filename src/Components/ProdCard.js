@@ -96,7 +96,7 @@ export function ProdCard(props) {
 
 
     return (
-        <div className={`card m-2 rounded-0 border-1 shadow-sm p-0`} id={props.id} discount={props.discount} style={{ width: "18rem", height: "25rem", overflow: "hidden", backgroundColor: "#f9f9f0" }}>
+        <div className={`card m-2 rounded-0 border-1 shadow-sm p-0 animate__animated animate__fadeIn`} id={props.id} discount={props.discount} style={{ width: "18rem", height: "25rem", overflow: "hidden", backgroundColor: "#f9f9f0" }}>
             <div className="position-relative ">
                 {!fav.some(fav => fav.id === props.id) ? (
                     <button className="btn btn-outline-warning position-absolute top-0 start-0" onClick={() => handleAddToFav(props.product)}>
@@ -175,7 +175,7 @@ export function ProdCard(props) {
                 </Modal.Footer>
             </Modal>
 
-        </div>
+        </div >
     );
 }
 

@@ -6,6 +6,7 @@ const INITAL_VALUE = {
     fav: [],
     cart: [],
     wishlist: [],
+    search: []
 }
 
 export const get_products = (state = INITAL_VALUE, action) => {
@@ -34,7 +35,7 @@ export const get_products = (state = INITAL_VALUE, action) => {
         case 'FEATCH_SEARCH':
             return {
                 ...state,
-                products: action.payload
+                search: action.payload
             }
         case 'ADD_TO_FAV':
             return {
