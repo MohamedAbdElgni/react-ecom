@@ -7,6 +7,7 @@ export default function Favourits() {
     <div className='row justify-content-center mt-5'>
       {Favourits.length > 0 ? Favourits.map(product => (
         <ProdCard
+          key={product.id}
           product={{ ...product, qnt: 1 }}
           id={product.id}
           img={product.images[0]}

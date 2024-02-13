@@ -1,0 +1,11 @@
+.img-item{
+  max-width: 7rem;
+  max-height: 7rem;
+  object-fit: contain ;
+  margin: 0 auto;
+  display: block;
+}
+
+.text-right{
+  text-align: right;
+}

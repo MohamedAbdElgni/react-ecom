@@ -10,11 +10,11 @@ import { Modal, Button } from 'react-bootstrap';
 import { fetchOne } from '../Store/Actions/Action';
 import { useParams } from 'react-router-dom';
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
+import './prod.css';
 
 
 
-
-export default function Prod() {
+function Prod() {
     const dispatch = useDispatch();
     const { id } = useParams();
     const context = useContext(AuthContext);
@@ -108,34 +108,19 @@ export default function Prod() {
     return (
         <>
             {prod.id && (
-                <div className='row justify-content-center position-relative' style={{ marginTop: '0px', height: '50vh', width: '100%' }}>
-                    <div className='card col-lg-8 col-md-10 col-sm-12'>
-                        <div className='card-body position-relative'>
-                            <div className='row position-relative' style={{ maxheight: '50%' }}>
-                                <div id="carouselExampleControls" className="carousel slide col-md-9" data-bs-ride="carousel">
-                                    <div className="carousel-inner" style={{ height: '100%' }}>
-                                        {prod.images && prod.images.map((image, index) => (
-                                            <div className={`carousel-item ${index === selectedImageIndex ? 'active' : ''}`} key={index}>
-                                                <img src={image} className='d-block w-100' alt={`${prod.title} ${index}`} />
-                                            </div>
-                                        ))}
+                <div className="container prouduct-card   shadow-lg">
+                    <div className='row'>
+                        <div className='left-big-image col-md-6'>
+                            <img src={prod.images[selectedImageIndex]} alt={prod.name} className='img-fluid' style={{ height: '400px' }} />
+                        </div>
+                        <div className='right-small-images col-md-6'>
+                            <div className='row'>
+                                {prod.images.map((image, index) => (
+                                    <div className='col-3' key={index}>
+                                        <img src={image} alt={prod.name} className='img-fluid border-1 border border-black' style={{ height: '100px' }} onClick={() => handleImageClick(index)} />
                                     </div>
-
-                                </div>
-                                <div className='col-md-3 overflow-auto' style={{ maxHeight: '100%' }}>
-                                    {prod.images && prod.images.map((image, index) => (
-                                        <img
-                                            key={index}
-                                            src={image}
-                                            className={`d-block w-100 mb-2 ${selectedImageIndex === index ? 'border border-primary' : ''}`}
-                                            alt={`${prod.title} ${index}`}
-                                            style={{ objectFit: 'cover', cursor: 'pointer' }}
-                                            onClick={() => handleImageClick(index)}
-                                        />
-                                    ))}
-                                </div>
+                                ))}
                             </div>
-
                             <div className='row'>
                                 <div className='col-lg-8 col-md-8 col-sm-12'>
                                     <h5 className='card-title'>{prod.title}</h5>
@@ -152,9 +137,9 @@ export default function Prod() {
                                             <span>{prod.price}</span>
                                         )}
                                     </p>
-                                    <div className='d-flex align-items-center'>
+                                    <div className='d-sm-flex justify-content-center align-items-sm-center'>
                                         {!wishlist.some(wishlist => wishlist.id === prod.id) ? (
-                                            <button className="btn btn-outline-warning" onClick={() => handleAddToWishlist(prod)}>
+                                            <button className="btn btn-warning border-black" onClick={() => handleAddToWishlist(prod)}>
                                                 <FontAwesomeIcon icon={faStar} /> Add to Wishlist
                                             </button>
                                         ) : (
@@ -163,7 +148,7 @@ export default function Prod() {
                                             </button>
                                         )}
                                         {!fav.some(fav => fav.id === prod.id) ? (
-                                            <button className="btn btn-outline-warning" onClick={() => handleAddToFav(prod)}>
+                                            <button className="btn btn-warning border-black" onClick={() => handleAddToFav(prod)}>
                                                 <FontAwesomeIcon icon={faHeart} /> Add to Favourites
                                             </button>
                                         ) : (
@@ -172,7 +157,7 @@ export default function Prod() {
                                             </button>
                                         )}
                                         {!cart.some(cart => cart.id === prod.id) ? (
-                                            <button className="btn btn-outline-warning" onClick={() => handleAddToCart(prod)}>
+                                            <button className="btn btn-warning border-black" onClick={() => handleAddToCart(prod)}>
                                                 <FontAwesomeIcon icon={faCartPlus} /> Add to Cart
                                             </button>
                                         ) : (
@@ -182,30 +167,32 @@ export default function Prod() {
                                         )}
                                     </div>
                                 </div>
+
                             </div>
                         </div>
+
                     </div>
+                    <Modal show={showModal} onHide={handleCloseModal}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Please Log In</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>You need to log in to perform this action.</Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="warning" onClick={handleCloseModal}>
+                                Close
+                            </Button>
+                            <Link to="/login">
+                                <Button variant="dark">
+                                    Log In
+                                </Button>
+                            </Link>
+                        </Modal.Footer>
+                    </Modal>
                 </div>
-
             )}
-            <Modal show={showModal} onHide={handleCloseModal}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Please Log In</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>You need to log in to perform this action.</Modal.Body>
-                <Modal.Footer>
-                    <Button variant="warning" onClick={handleCloseModal}>
-                        Close
-                    </Button>
-                    <Link to="/login">
-                        <Button variant="dark">
-                            Log In
-                        </Button>
-                    </Link>
-                </Modal.Footer>
-            </Modal>
-
         </>
     )
+
 }
 
+export default Prod;

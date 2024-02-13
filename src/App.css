@@ -96,7 +96,7 @@ form > * {
 
 .App{
   position: relative;
-  overflow: hidden;
+  width: 100%;
 }
 
 @media screen and (max-width: 600px) {

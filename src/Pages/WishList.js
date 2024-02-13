@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 export default function WishList() {
     const wishList = useSelector(state => state.wishlist);
     return (
-        <div className='row justify-content-center mt-5'>
+        <div className='row justify-content-center mt-5' >
             {wishList.length > 0 ? wishList.map(product => (
                 <ProdCard
+                    key={product.id}
                     product={{ ...product, qnt: 1 }}
                     id={product.id}
                     img={product.images[0]}

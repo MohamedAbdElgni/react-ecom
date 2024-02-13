@@ -1,13 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAll, fetchCats, fetchOneCat } from '../Store/Actions/Action';
-import {ProdCard} from '../Components/ProdCard';
-
+import { ProdCard } from '../Components/ProdCard';
+import './prodcat.css';
 function Home() {
   const dispatch = useDispatch();
   const cats = useSelector(state => state.cats);
   const products = useSelector(state => state.products.products);
-  const isLoading = useSelector(state => state.products.loading);
 
   useEffect(() => {
     dispatch(fetchCats());
@@ -21,20 +20,19 @@ function Home() {
   return (
     <div className='container-fluid p-0'>
       <div className='cat-bar'>
-        {isLoading ? (
-          <p>Loading categories...</p>
-        ) : (
-          <>
-            <button className="cat-btn animate__animated animate__flipInX" onClick={(e) => dispatch(fetchAll())}>All</button>
-            {cats.map(cat => (
-              <button key={cat} className="cat-btn animate__animated animate__flipInX" onClick={() => handleClick(cat)}>{cat}</button>
-            ))}
-          </>
-        )}
+
+        <>
+          <button key="all" className="cat-btn animate__animated animate__flipInX" onClick={(e) => dispatch(fetchAll())}>All</button>
+          {cats.map(cat => (
+            <button key={cat} className="cat-btn animate__animated animate__flipInX" onClick={() => handleClick(cat)}>{cat}</button>
+          ))}
+        </>
+
       </div>
       <div className="row justify-content-center">
         {products && products.map(product => (
           <ProdCard
+            key={product.id}
             product={{ ...product, qnt: 1 }}
             id={product.id}
             img={product.images[0]}

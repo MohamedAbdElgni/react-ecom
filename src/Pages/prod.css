@@ -1,0 +1,12 @@
+.prouduct-card {
+  border: 2px solid #f0f0f0;
+border-radius: 0px;
+margin: 10px;
+padding: 10px;
+box-shadow: 0px 0px 10px 0px #f0f0f0;
+width: 90vw;
+margin: auto;
+margin-top: 2rem;
+padding-bottom: 3rem;
+padding-top: 3rem ;
+}

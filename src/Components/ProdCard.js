@@ -123,11 +123,11 @@ export function ProdCard(props) {
 
                     {/* Price discount */}
                     {props.discount ? (
-                        <p className="card-text mb-0">
+                        <div className="card-text mb-0">
                             <span className="text-success"><span>$</span>{Math.round(props.price * (1 - props.discount / 100))}</span>
                             <span className="text-danger"> ({props.discount}% off)</span>
                             <p className="text-decoration-line-through me-2">${props.price}</p>
-                        </p>
+                        </div>
                     ) : (
                         <p className="card-text mb-0">{props.price}</p>
                     )}
@@ -136,7 +136,7 @@ export function ProdCard(props) {
                 {/* WiSH */}
                 <div className="d-flex  align-items-center justify-content-center">
                     {!wishlist.some(wishlist => wishlist.id === props.id) ? (
-                        <button className="btn btn-outline-warning" onClick={() => handleAddToWishlist(props.product)}>
+                        <button className="btn btn-warning border-black" onClick={() => handleAddToWishlist(props.product)}>
                             <FontAwesomeIcon icon={faStar} /> Add to Wishlist
                         </button>
                     ) : (
