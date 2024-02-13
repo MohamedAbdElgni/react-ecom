@@ -9,7 +9,7 @@ import { AuthContext } from '../AuthContext';
 import { Modal, Button } from 'react-bootstrap';
 
 
-function ProdCard(props) {
+export function ProdCard(props) {
     const [isHovered, setIsHovered] = useState(false);
     const context = useContext(AuthContext);
     const fav = useSelector(state => state.fav);
@@ -19,6 +19,7 @@ function ProdCard(props) {
     const [showModal, setShowModal] = useState(false);
     const dispatch = useDispatch();
     const handleCloseModal = () => setShowModal(false);
+
     useEffect(() => {
 
     }, [cart, wishlist, fav]);
@@ -157,17 +158,17 @@ function ProdCard(props) {
                     )}
                 </div>
             </div>
-            <Modal show={showModal} onHide={handleCloseModal}>
+            <Modal show={showModal} onHide={handleCloseModal} className="text-center rounded-5">
                 <Modal.Header closeButton>
                     <Modal.Title>Please Log In</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>You need to log in to perform this action.</Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleCloseModal}>
+                    <Button variant="warning" onClick={handleCloseModal}>
                         Close
                     </Button>
                     <Link to="/login">
-                        <Button variant="primary">
+                        <Button variant="dark">
                             Log In
                         </Button>
                     </Link>
@@ -178,4 +179,3 @@ function ProdCard(props) {
     );
 }
 
-export default ProdCard;

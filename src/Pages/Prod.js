@@ -1,33 +1,45 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { useContext, useEffect } from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { faHeart, faStar, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { AuthContext } from '../AuthContext';
+import { Modal, Button } from 'react-bootstrap';
 import { fetchOne } from '../Store/Actions/Action';
-import { useSelector, useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
+
+
+
 
 export default function Prod() {
     const dispatch = useDispatch();
     const { id } = useParams();
     const prod = useSelector(state => state.product);
+    const context = useContext(AuthContext);
+    const fav = useSelector(state => state.fav);
+    const cart = useSelector(state => state.cart);
+    const wishlist = useSelector(state => state.wishlist);
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         dispatch(fetchOne(id));
     }, [id, dispatch]);
 
-    const handleAddToCart = () => {
 
-    };
+    const handleCloseModal = () => {
+        setShowModal(false);
+    }
 
-    const handleAddToWishlist = () => {
-
-    };
-
-    const handleAddToFavorites = () => {
-
-    };
-
-    const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+    const handleShowModal = () => {
+        setShowModal(true);
+    }
     const handleImageClick = (index) => {
         setSelectedImageIndex(index);
     };
+    const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
     return (
         <>
@@ -77,17 +89,41 @@ export default function Prod() {
                                         )}
                                     </p>
                                     <div className='d-flex align-items-center'>
-                                        <button className='btn btn-primary me-2' onClick={handleAddToCart}>Add to Cart</button>
-                                        <button className='btn btn-outline-secondary me-2' onClick={handleAddToWishlist}>Add to Wishlist</button>
-                                        <button className='btn btn-outline-danger' onClick={handleAddToFavorites}>Add to Favorites</button>
+                                        {!wishlist.some(wishlist => wishlist.id === prod.id) ? (
+                                            <button className="btn btn-outline-warning" >
+                                                <FontAwesomeIcon icon={faStar} /> Add to Wishlist
+                                            </button>
+                                        ) : (
+                                            <button className="btn btn-outline-danger" >
+                                                <FontAwesomeIcon icon={faStar} /> Remove from Wishlist
+                                            </button>
+                                        )}
+                                        {!fav.some(fav => fav.id === prod.id) ? (
+                                            <button className="btn btn-outline-warning" >
+                                                <FontAwesomeIcon icon={faHeart} /> Add to Favourites
+                                            </button>
+                                        ) : (
+                                            <button className="btn btn-outline-danger" >
+                                                <FontAwesomeIcon icon={faHeart} /> Remove from Favourites
+                                            </button>
+                                        )}
+                                        {!cart.some(cart => cart.id === prod.id) ? (
+                                            <button className="btn btn-outline-warning" >
+                                                <FontAwesomeIcon icon={faCartPlus} /> Add to Cart
+                                            </button>
+                                        ) : (
+                                            <button className="btn btn-outline-danger" >
+                                                <FontAwesomeIcon icon={faCartPlus} /> Remove from Cart
+                                            </button>
+                                        )}
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             )}
         </>
-    );
-};
+    )
+}
+

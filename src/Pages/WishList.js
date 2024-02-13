@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import ProdCard from '../Components/ProdCard';
+import {ProdCard} from '../Components/ProdCard';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 export default function WishList() {
     const wishList = useSelector(state => state.wishlist);
