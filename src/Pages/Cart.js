@@ -6,9 +6,13 @@ import { useDispatch } from 'react-redux';
 import { removeFromCart, addToCart } from '../Store/Actions/Action';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { useContext } from 'react';
+import { AuthContext } from '../AuthContext';
 
 export default function Cart() {
     const cart = useSelector(state => state.cart);
+    const authContext = useContext(AuthContext);
+    
     const dispatch = useDispatch();
 
 
@@ -72,10 +76,24 @@ export default function Cart() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cart]);
 
+    
+    useEffect(() => {
+
+
+        if (authContext.currentUser) {
+            const users = authContext.users;
+            const userIndex = users.findIndex(user => user.email === authContext.currentUser.email);
+            users[userIndex] = { ...authContext.currentUser, cart: cart };
+            authContext.setUsers(users);
+            authContext.setCurrentUser({ ...authContext.currentUser, cart: cart });
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [cart]);
+
     return (
         <div>
             {cart.length !== 0 ? (
-                <div className="container-fluid mt-5" style={{minHeight:'100vh'}}>
+                <div className="container-fluid mt-5" style={{ minHeight: '100vh' }}>
                     <div className='row'>
 
                         <div className='col-md-8 '>
@@ -153,7 +171,7 @@ export default function Cart() {
                 </div>
 
             ) : (
-                <div className='col-12 w-100 mt-5' style={{minHeight:'100vh'}}>
+                <div className='col-12 w-100 mt-5' style={{ minHeight: '100vh' }}>
                     <h1 className='text-center'>Your Cart is empty</h1>
 
                     <Link className="w-100" to='/'><button className="btn btn-outline-warning w-100" >Go to Home</button></Link>

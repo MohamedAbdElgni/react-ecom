@@ -7,8 +7,8 @@ export default function Footer() {
 
         <footer className='bottom-0'>
             <div className='container '>
-                <div class='row'>
-                    <div class='col-md-12'>
+                <div className='row'>
+                    <div className='col-md-12'>
                         <ul>
                             <li><Link to='/'>Home</Link></li>
                             <li><Link to='/cart'>Cart</Link></li>

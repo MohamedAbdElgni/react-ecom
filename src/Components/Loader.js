@@ -3,8 +3,8 @@ import './Loader.css';
 export default function Loader() {
   return (
     <div className="Loader" >
-        <div class="wrapper">
-        <div class="spinner"></div>
+        <div className="wrapper">
+        <div className="spinner"></div>
     </div>
     </div>
   )

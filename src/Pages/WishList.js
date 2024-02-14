@@ -1,8 +1,26 @@
 import { useSelector } from 'react-redux';
 import { ProdCard } from '../Components/ProdCard';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { useContext } from 'react';
+import { AuthContext } from '../AuthContext';
+import { useEffect } from 'react';
 export default function WishList() {
     const wishList = useSelector(state => state.wishlist);
+    const authContext = useContext(AuthContext);
+
+    
+    useEffect(() => {
+
+
+        if (authContext.currentUser) {
+            const users = authContext.users;
+            const userIndex = users.findIndex(user => user.email === authContext.currentUser.email);
+            users[userIndex] = { ...authContext.currentUser, wishLists: wishList };
+            authContext.setUsers(users);
+            authContext.setCurrentUser({ ...authContext.currentUser, wishLists: wishList });
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [wishList]);
     return (
         <div className='row justify-content-center m-0 mt-5 ' style={{ minHeight: '100vh' }}>
             {wishList.length > 0 ? wishList.map(product => (

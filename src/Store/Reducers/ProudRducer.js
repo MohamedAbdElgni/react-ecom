@@ -3,6 +3,7 @@ const INITAL_VALUE = {
     cats: [],
     product: [],
     cat: [],
+
     fav: [],
     cart: [],
     wishlist: [],

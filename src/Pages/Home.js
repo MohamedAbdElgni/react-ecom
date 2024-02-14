@@ -13,8 +13,8 @@ function Home() {
 
   useEffect(() => {
     dispatch(fetchCats());
-    async function fetchData() {
-      await dispatch(fetchAll());
+    function fetchData() {
+      dispatch(fetchAll());
       setLoading(false);
     }
     fetchData();
