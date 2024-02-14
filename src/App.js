@@ -13,7 +13,7 @@ import Error from './Pages/Error';
 import Cart from './Pages/Cart';
 import 'animate.css';
 import Footer from './Components/Footer';
-
+import CompEffect from './CompEffect';
 
 function App() {
   return (
@@ -30,8 +30,10 @@ function App() {
           <Route exact path="/login" component={logIn} />
           <Route exact path="/signup" component={SignUp} />
           <Route component={Error} path="*" />
+          
         </Switch>
         <Footer />
+        <CompEffect />
       </BrowserRouter>
     </div>
   );

@@ -4,14 +4,14 @@ import Form from 'react-bootstrap/Form';
 import AlertNew from '../../Components/Alert';
 import { Link, Redirect } from 'react-router-dom';
 import { AuthContext } from '../../AuthContext';
-
+import { useDispatch } from 'react-redux';
 const LogIn = () => {
     const [showAlert, setShowAlert] = useState(false);
     const [alertTitle, setAlertTitle] = useState('');
     const [alertMessage, setAlertMessage] = useState('');
     const handleCloseAlert = () => setShowAlert(false);
     const authContext = useContext(AuthContext);
-
+    const dispatch = useDispatch();
     useEffect(() => {
     }, [authContext.isLoggedIn]);
 
@@ -64,6 +64,9 @@ const LogIn = () => {
             const user = authContext.users.find(u => u.email === email.value && u.password === password.value);
             if (user) {
                 authContext.login(user);
+                dispatch({ type: "ADD_TO_CART", payload: user.cart });
+                dispatch({ type: "ADD_TO_FAV", payload: user.fav });
+                dispatch({ type: "ADD_TO_WISHLIST", payload: user.wishLists });
             } else {
                 setAlertTitle('Error');
                 setAlertMessage('Invalid email or password');
@@ -115,10 +118,10 @@ const LogIn = () => {
                             <Form.Text className="text-danger">{password.message}</Form.Text>
                         </Form.Group>
                         <div className='text-center'>
-                            
-                        <Button variant=""className='btn-warning border-black w-100' type="submit">
-                            Login
-                        </Button>
+
+                            <Button variant="" className='btn-warning border-black w-100' type="submit">
+                                Login
+                            </Button>
                         </div>
                     </Form>
                     <p className='mt-3'>Don't have an account? <Link to='/signup'>Sign up</Link></p>

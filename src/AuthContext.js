@@ -1,5 +1,4 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 
 const AuthContext = createContext();
 
@@ -7,7 +6,7 @@ const AuthProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [currentUser, setCurrentUser] = useState(false);
     const [users, setUsers] = useState([]);
-    
+
 
     useEffect(() => {
         const ckuser = JSON.parse(localStorage.getItem('currentUser'));
@@ -23,7 +22,7 @@ const AuthProvider = ({ children }) => {
         setCurrentUser(user);
     };
 
-    
+
 
     useEffect(() => {
         localStorage.setItem('currentUser', JSON.stringify(currentUser));
@@ -36,7 +35,7 @@ const AuthProvider = ({ children }) => {
         setCurrentUser(false);
     };
 
-    
+
 
 
     return (

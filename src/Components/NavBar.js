@@ -11,15 +11,18 @@ const NavBarTop = () => {
     const authContext = useContext(AuthContext);
     const isLoggedIn = authContext.currentUser ? true : false;
     const currentUser = authContext.currentUser;
-    const logout = () => {
-        authContext.logout();
-    }
+
     const cart = useSelector(state => state.cart);
     const wishList = useSelector(state => state.wishlist);
     const favorites = useSelector(state => state.fav);
     const dispatch = useDispatch();
     const [keyword, setKeyword] = useState('');
-
+    const logout = () => {
+        authContext.logout();
+        dispatch({ type: 'ADD_TO_CART', payload: [] });
+        dispatch({ type: 'ADD_TO_FAV', payload: [] });
+        dispatch({ type: 'ADD_TO_WISHLIST', payload: [] });
+    }
     useEffect(() => {
     }
         , [cart, wishList, favorites]);
@@ -38,7 +41,7 @@ const NavBarTop = () => {
         dispatch(fetchSearch(keyword));
     }
     return (
-        <Navbar bg="light" expand="lg" className="mt-0 pt-0" style={{  position: 'sticky', top: 0, zIndex: 1000 }}>
+        <Navbar bg="light" expand="lg" className="mt-0 pt-0" style={{ position: 'sticky', top: 0, zIndex: 1000 }}>
             <div className="container-fluid shadow-lg">
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
