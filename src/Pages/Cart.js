@@ -75,7 +75,7 @@ export default function Cart() {
     return (
         <div>
             {cart.length !== 0 ? (
-                <div className="container-fluid">
+                <div className="container-fluid mt-5" style={{minHeight:'100vh'}}>
                     <div className='row'>
 
                         <div className='col-md-8 '>
@@ -153,7 +153,7 @@ export default function Cart() {
                 </div>
 
             ) : (
-                <div className='col-12 w-100'>
+                <div className='col-12 w-100 mt-5' style={{minHeight:'100vh'}}>
                     <h1 className='text-center'>Your Cart is empty</h1>
 
                     <Link className="w-100" to='/'><button className="btn btn-outline-warning w-100" >Go to Home</button></Link>

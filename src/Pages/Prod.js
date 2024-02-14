@@ -28,7 +28,8 @@ function Prod() {
 
     useEffect(() => {
         dispatch(fetchOne(id));
-    }, [id, dispatch]);
+
+    }, [id, dispatch, prod]);
 
 
     const handleAddToCart = (product) => {
@@ -106,8 +107,9 @@ function Prod() {
     const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
     return (
-        <>
+        <div className='prod'>
             {prod.id && (
+
                 <div className="container prouduct-card   shadow-lg">
                     <div className='row'>
                         <div className='left-big-image col-md-6'>
@@ -190,7 +192,7 @@ function Prod() {
                     </Modal>
                 </div>
             )}
-        </>
+        </div>
     )
 
 }

@@ -207,7 +207,7 @@ function SignUp() {
     }
 
     return (
-        <div className='container mt-5'>
+        <div className='container mt-5 prod'>
             <div className='text-center'>
                 <h1>Sign Up</h1>
                 or already have an account?
@@ -286,7 +286,7 @@ function SignUp() {
                 </Form.Group>
 
 
-                <Button variant="primary" type="submit" className='w-100 p-2 btn-success'>
+                <Button variant="" type="submit" className='w-100 p-2 btn-warning border-black'>
                     Register
                 </Button>
             </Form>

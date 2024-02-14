@@ -80,7 +80,7 @@ const LogIn = () => {
     return (
 
 
-        <div className='container mt-5'>
+        <div className='container mt-5 prod'>
             <div className='row justify-content-center'>
                 <div className='col-12 col-md-6'>
                     <h2 className='text-center'>Login</h2>
@@ -114,9 +114,12 @@ const LogIn = () => {
                             </span>
                             <Form.Text className="text-danger">{password.message}</Form.Text>
                         </Form.Group>
-                        <Button variant="primary" type="submit">
-                            Submit
+                        <div className='text-center'>
+                            
+                        <Button variant=""className='btn-warning border-black w-100' type="submit">
+                            Login
                         </Button>
+                        </div>
                     </Form>
                     <p className='mt-3'>Don't have an account? <Link to='/signup'>Sign up</Link></p>
                 </div>

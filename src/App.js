@@ -12,11 +12,12 @@ import Search from './Pages/Search';
 import Error from './Pages/Error';
 import Cart from './Pages/Cart';
 import 'animate.css';
+import Footer from './Components/Footer';
 
 
 function App() {
   return (
-    <div className="App">
+    <div className="container-fluid p-0 App">
       <BrowserRouter>
         <NavBarTop />
         <Switch>
@@ -30,6 +31,7 @@ function App() {
           <Route exact path="/signup" component={SignUp} />
           <Route component={Error} path="*" />
         </Switch>
+        <Footer />
       </BrowserRouter>
     </div>
   );

@@ -9,7 +9,7 @@ function Search() {
 
     return (
 
-        <div className='row justify-content-center mt-5'>
+        <div className='row justify-content-center mt-5 m-0' style={{ minHeight: '100vh' }}>
             {products.length > 0 ? products.map(product => (
                 <ProdCard
                     product={{ ...product, qnt: 1 }}

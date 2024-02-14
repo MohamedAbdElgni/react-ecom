@@ -38,7 +38,7 @@ const NavBarTop = () => {
         dispatch(fetchSearch(keyword));
     }
     return (
-        <Navbar bg="light" expand="lg" className="mt-0 pt-0">
+        <Navbar bg="light" expand="lg" className="mt-0 pt-0" style={{  position: 'sticky', top: 0, zIndex: 1000 }}>
             <div className="container-fluid shadow-lg">
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
